@@ -39,11 +39,17 @@ typedef struct mp_int {
     mp_size sz;
 } MP_INT;
 
+typedef mp_int mpz_t[1];
+
+#ifdef WINDOZE
+#define PROTO(x) x
+#else	// WINDOZE
 #ifdef __STDC__
 #define PROTO(x) x
 #else
 #define PROTO(x) ()
 #endif
+#endif	// WINDOZE
 
 void mpz_init PROTO((MP_INT *s));
 void mpz_init_set PROTO((MP_INT *s, MP_INT *t));
