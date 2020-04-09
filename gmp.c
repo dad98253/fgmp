@@ -608,6 +608,7 @@ MP_INT *z; MP_INT *x; unsigned long e;
         unsigned long bs = (e % (DIGITBITS));
         if (digs > x->sz || (digs == (x->sz) && bs)) {
             mpz_set(z,x);
+            mpz_clear(&q);
             return;
         }
             
@@ -627,6 +628,7 @@ MP_INT *z; MP_INT *x; unsigned long e;
         else
             z->sn = sn;
         mpz_clear(&y);
+        mpz_clear(&q);
     }
 }
     
@@ -1538,6 +1540,7 @@ MP_INT *zz,*x,*ee,*n;
     }
     mpz_set(zz,t);
     clear(t);
+    clear(e);
 }
 
 void mpz_powm_ui(z,x,e,n)
